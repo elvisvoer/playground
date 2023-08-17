@@ -1,5 +1,11 @@
 import { css } from "lit";
 
+export const variables = css`
+  :host {
+    --bg-opacity: 1;
+  }
+`;
+
 export const container = css`
   .container {
     width: 100%;
@@ -18,4 +24,8 @@ export const flex1 = css`
   }
 `;
 
-
+export const bgGray100 = css`
+  .bg-gray-100 {
+    background-color: rgba(247, 250, 252, var(--bg-opacity));
+  }
+`;
