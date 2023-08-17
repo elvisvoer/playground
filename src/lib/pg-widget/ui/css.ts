@@ -29,3 +29,9 @@ export const bgGray100 = css`
     background-color: rgba(247, 250, 252, var(--bg-opacity));
   }
 `;
+
+export const bgGray900 = css`
+  .bg-gray-900 {
+    background-color: rgba(26, 32, 44, var(--bg-opacity));
+  }
+`;
