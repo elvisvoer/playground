@@ -15,12 +15,6 @@ export class App extends LitElement {
       margin: 0 auto;
       padding: 2rem;
     }
-
-    @media (prefers-color-scheme: light) {
-      button {
-        background-color: #f9f9f9;
-      }
-    }
   `;
 }
 
