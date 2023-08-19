@@ -73,4 +73,8 @@ export class VirtualConsole {
       throw new Error("console.dir unknown type: " + typeof arg);
     });
   }
+
+  clear() {
+    this.driver.clear();
+  }
 }

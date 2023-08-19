@@ -1,24 +1,64 @@
-import { LitElement, html } from "lit";
+import { LitElement, PropertyValueMap, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { ref, Ref, createRef } from "lit/directives/ref.js";
-import { variables, bgGray900, container, flex, flex1 } from "./ui/css";
+import { ref } from "lit/directives/ref.js";
+import {
+  variables,
+  bgGray900,
+  container,
+  flex,
+  flex1,
+  gap4,
+  wFull,
+} from "./ui/css";
 
 import { VirtualConsole, HTMLConsoleDriver } from "./console";
 import { evalSafe } from "./javascript";
 
 @customElement("pg-widget")
 export class PGWidget extends LitElement {
-  static styles = [variables, bgGray900, container, flex, flex1];
+  static styles = [variables, bgGray900, container, flex, flex1, gap4, wFull];
 
-  consoleRef: Ref<HTMLInputElement> = createRef();
+  inputElement?: Element;
+  virtualConsole?: VirtualConsole;
 
   render() {
     return html`
-      <div class="flex container">
-        <div class="flex-1">One</div>
+      <div class="flex container gap-4">
+        <div class="flex-1">
+          <textarea
+            class="w-full"
+            ${ref(this.inputElementRefUpdated)}
+            @input="${(event: any) => {
+              this.virtualConsole?.clear();
+              try {
+                this.run(event.target?.value || "");
+              } catch (err: any) {
+                this.virtualConsole?.error(err.message);
+              }
+            }}"
+          ></textarea>
+        </div>
         <div class="flex-1 bg-gray-900" ${ref(this.consoleRefUpdated)}></div>
       </div>
     `;
+  }
+
+  protected firstUpdated(): void {
+    this.run(String(this.inputElement?.textContent));
+  }
+
+  private run(code: string) {
+    evalSafe(code, {
+      console: this.virtualConsole,
+    });
+  }
+
+  private inputElementRefUpdated(ref?: Element) {
+    if (!ref) {
+      return;
+    }
+
+    this.inputElement = ref;
   }
 
   private consoleRefUpdated(ref?: Element) {
@@ -26,17 +66,6 @@ export class PGWidget extends LitElement {
       return;
     }
 
-    evalSafe(
-      `
-    console.log("log");
-    console.debug("debug");
-    console.error("error");
-    console.info("info");
-    console.dir("dir", { key: "value" }, [0, 1, 2, 3]);
-    `,
-      {
-        console: new VirtualConsole(new HTMLConsoleDriver(ref)),
-      }
-    );
+    this.virtualConsole = new VirtualConsole(new HTMLConsoleDriver(ref));
   }
 }
