@@ -22,9 +22,129 @@ export const container = css`
   }
 `;
 
+export const wFull = css`
+  .w-full {
+    width: 100%;
+  }
+`;
+
 export const flex = css`
   .flex {
     display: flex;
+  }
+`;
+
+export const gap0 = css`
+  .gap-0 {
+    gap: 0;
+  }
+`;
+
+export const gap1 = css`
+  .gap-1 {
+    gap: 0.25rem;
+  }
+`;
+
+export const gap2 = css`
+  .gap-2 {
+    gap: 0.5rem;
+  }
+`;
+
+export const gap3 = css`
+  .gap-3 {
+    gap: 0.75rem;
+  }
+`;
+
+export const gap4 = css`
+  .gap-4 {
+    gap: 1rem;
+  }
+`;
+
+export const gap5 = css`
+  .gap-5 {
+    gap: 1.25rem;
+  }
+`;
+
+export const gap6 = css`
+  .gap-6 {
+    gap: 1.5rem;
+  }
+`;
+
+export const gap8 = css`
+  .gap-8 {
+    gap: 2rem;
+  }
+`;
+
+export const gap10 = css`
+  .gap-10 {
+    gap: 2.5rem;
+  }
+`;
+
+export const gap12 = css`
+  .gap-12 {
+    gap: 3rem;
+  }
+`;
+
+export const gap16 = css`
+  .gap-16 {
+    gap: 4rem;
+  }
+`;
+
+export const gap20 = css`
+  .gap-20 {
+    gap: 5rem;
+  }
+`;
+
+export const gap24 = css`
+  .gap-24 {
+    gap: 6rem;
+  }
+`;
+
+export const gap32 = css`
+  .gap-32 {
+    gap: 8rem;
+  }
+`;
+
+export const gap40 = css`
+  .gap-40 {
+    gap: 10rem;
+  }
+`;
+
+export const gap48 = css`
+  .gap-48 {
+    gap: 12rem;
+  }
+`;
+
+export const gap56 = css`
+  .gap-56 {
+    gap: 14rem;
+  }
+`;
+
+export const gap64 = css`
+  .gap-64 {
+    gap: 16rem;
+  }
+`;
+
+export const gapPx = css`
+  .gap-px {
+    gap: 1px;
   }
 `;
 
