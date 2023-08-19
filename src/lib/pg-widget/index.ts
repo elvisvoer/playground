@@ -14,6 +14,11 @@ import {
 import { VirtualConsole, HTMLConsoleDriver } from "./console";
 import { evalSafe } from "./javascript";
 
+type Context = {
+  console: VirtualConsole;
+  window: Context;
+};
+
 @customElement("pg-widget")
 export class PGWidget extends LitElement {
   static styles = [variables, bgGray900, container, flex, flex1, gap4, wFull];
@@ -48,9 +53,14 @@ export class PGWidget extends LitElement {
   }
 
   private run(code: string) {
-    evalSafe(code, {
-      console: this.virtualConsole,
-    });
+    const context: Context = {
+      console: this.virtualConsole as VirtualConsole,
+      // we will initialize window on the line after so it's safe to have it null here
+      window: null as unknown as Context,
+    };
+    context.window = context;
+
+    evalSafe(code, context);
   }
 
   private inputElementRefUpdated(ref?: Element) {
