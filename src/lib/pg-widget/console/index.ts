@@ -28,4 +28,13 @@ export class VirtualConsole {
   log(...args: any[]) {
     this.driver.writeln(undefined, ...args);
   }
+
+  error(...args: any[]) {
+    this.driver.writeln(
+      {
+        color: "var(--color-red-800)",
+      },
+      ...args
+    );
+  }
 }

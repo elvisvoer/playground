@@ -11,6 +11,8 @@ export const variables = css`
     --color-gray-700: rgba(74, 85, 104, 1);
     --color-gray-800: rgba(45, 55, 72, 1);
     --color-gray-900: rgba(26, 32, 44, 1);
+
+    --color-red-800: rgba(155, 44, 44, 1);
   }
 `;
 
