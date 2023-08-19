@@ -26,8 +26,17 @@ export class PGWidget extends LitElement {
       return;
     }
 
-    evalSafe("console.log('foo'); console.error('something went wrong')", {
-      console: new VirtualConsole(new HTMLConsoleDriver(ref)),
-    });
+    evalSafe(
+      `
+    console.log("log");
+    console.debug("debug");
+    console.error("error");
+    console.info("info");
+    console.dir("dir", { key: "value" }, [0, 1, 2, 3]);
+    `,
+      {
+        console: new VirtualConsole(new HTMLConsoleDriver(ref)),
+      }
+    );
   }
 }

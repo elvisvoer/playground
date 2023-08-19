@@ -1,10 +1,15 @@
+const defaultStyle = {
+  color: "var(--color-gray-100)",
+  "white-space": "pre-wrap",
+};
+
 export class HTMLConsoleDriver {
   constructor(private rootNode: Element) {}
 
   public write(style?: { color: string }, ...data: string[]) {
-    const s = style || { color: "var(--color-gray-100)" };
+    const s = { ...defaultStyle, ...(style || {}) };
     const prefix = `<span style="${Object.entries(s)
-      .map(([key, val]) => `${key}: ${val}`)
+      .map(([key, val]) => `${key}: ${val};`)
       .join(" ")}">`;
     const suffix = `</span>`;
     this.rootNode.innerHTML += `${prefix}${data.join(" ")}${suffix}`;
@@ -29,12 +34,43 @@ export class VirtualConsole {
     this.driver.writeln(undefined, ...args);
   }
 
+  debug(...args: any[]) {
+    this.driver.writeln(undefined, ...args);
+  }
+
+  info(...args: any[]) {
+    args.unshift("&#x1F6C8;");
+    this.driver.writeln(undefined, ...args);
+  }
+
   error(...args: any[]) {
+    args.unshift("&#x1F6C8;");
     this.driver.writeln(
       {
         color: "var(--color-red-800)",
       },
       ...args
     );
+  }
+
+  dir(...args: unknown[]) {
+    args.forEach((arg) => {
+      if (typeof arg === "string") {
+        this.driver.write(undefined, arg, " ");
+        return;
+      }
+
+      if (typeof arg === "object") {
+        const formatted = JSON.stringify(arg, undefined, 2);
+        const lines = formatted.split("\n");
+        lines.forEach((line) => {
+          this.driver.writeln(undefined, line);
+        });
+
+        return;
+      }
+
+      throw new Error("console.dir unknown type: " + typeof arg);
+    });
   }
 }
