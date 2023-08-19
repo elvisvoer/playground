@@ -28,6 +28,18 @@ export const wFull = css`
   }
 `;
 
+export const maxWSm = css`
+  .max-w-sm {
+    max-width: 24rem;
+  }
+`;
+
+export const block = css`
+  .block {
+    display: block;
+  }
+`;
+
 export const flex = css`
   .flex {
     display: flex;
@@ -154,6 +166,12 @@ export const flex1 = css`
   }
 `;
 
+export const hoverBgGray700 = css`
+  .hover-bg-gray-700:hover {
+    background-color: var(--color-gray-700);
+  }
+`;
+
 export const bgGray100 = css`
   .bg-gray-100 {
     background-color: var(--color-gray-100);
@@ -259,5 +277,35 @@ export const textGray800 = css`
 export const textGray900 = css`
   .text-gray-900 {
     color: var(--color-gray-900);
+  }
+`;
+
+export const p6 = css`
+  .p-6 {
+    padding: 1.5rem;
+  }
+`;
+
+export const border = css`
+  .border {
+    border: 1px solid;
+  }
+`;
+
+export const borderGray700 = css`
+  .border-gray-700 {
+    border-color: var(--color-gray-700);
+  }
+`;
+
+export const roundedLg = css`
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+`;
+
+export const shadow = css`
+  .shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   }
 `;

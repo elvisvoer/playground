@@ -1,18 +1,12 @@
-import { LitElement, PropertyValueMap, html } from "lit";
+import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { ref } from "lit/directives/ref.js";
-import {
-  variables,
-  bgGray900,
-  container,
-  flex,
-  flex1,
-  gap4,
-  wFull,
-} from "./ui/css";
+import { container, flex, flex1, gap4, wFull } from "./ui/css";
 
 import { VirtualConsole, HTMLConsoleDriver } from "./console";
 import { evalSafe } from "./javascript";
+
+import "./ui/card";
 
 type Context = {
   console: VirtualConsole;
@@ -21,7 +15,7 @@ type Context = {
 
 @customElement("pg-widget")
 export class PGWidget extends LitElement {
-  static styles = [variables, bgGray900, container, flex, flex1, gap4, wFull];
+  static styles = [container, flex, flex1, gap4, wFull];
 
   inputElement?: Element;
   virtualConsole?: VirtualConsole;
@@ -43,7 +37,9 @@ export class PGWidget extends LitElement {
             }}"
           ></textarea>
         </div>
-        <div class="flex-1 bg-gray-900" ${ref(this.consoleRefUpdated)}></div>
+        <div class="flex-1">
+          <pg-card><div ${ref(this.consoleRefUpdated)}></div></pg-card>
+        </div>
       </div>
     `;
   }
