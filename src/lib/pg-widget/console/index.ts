@@ -1,13 +1,18 @@
 export class HTMLConsoleDriver {
   constructor(private rootNode: Element) {}
 
-  public write(...data: string[]) {
-    this.rootNode.innerHTML += data.join(" ");
+  public write(style?: { color: string }, ...data: string[]) {
+    const s = style || { color: "var(--color-gray-100)" };
+    const prefix = `<span style="${Object.entries(s)
+      .map(([key, val]) => `${key}: ${val}`)
+      .join(" ")}">`;
+    const suffix = `</span>`;
+    this.rootNode.innerHTML += `${prefix}${data.join(" ")}${suffix}`;
   }
 
-  public writeln(...data: string[]) {
-    this.write(...data);
-    this.write("<br />");
+  public writeln(style?: { color: string }, ...data: string[]) {
+    this.write(style, ...data);
+    this.write(undefined, "<br />");
   }
 
   public clear() {
@@ -17,10 +22,10 @@ export class HTMLConsoleDriver {
 
 export class VirtualConsole {
   constructor(private driver: HTMLConsoleDriver) {
-    this.driver.writeln("Virtual Console initialized!");
+    this.driver.writeln(undefined, "Virtual Console initialized!");
   }
 
   log(...args: any[]) {
-    this.driver.writeln(...args);
+    this.driver.writeln(undefined, ...args);
   }
 }
