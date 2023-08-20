@@ -12,7 +12,15 @@ export const variables = css`
     --color-gray-800: rgba(45, 55, 72, 1);
     --color-gray-900: rgba(26, 32, 44, 1);
 
+    --color-blue-500: #4299e1;
+
     --color-red-800: rgba(155, 44, 44, 1);
+  }
+`;
+
+export const boxBorder = css`
+  .box-border {
+    box-sizing: border-box;
   }
 `;
 
@@ -43,6 +51,12 @@ export const block = css`
 export const flex = css`
   .flex {
     display: flex;
+  }
+`;
+
+export const flex1 = css`
+  .flex-1 {
+    flex: 1 1 0%;
   }
 `;
 
@@ -160,12 +174,6 @@ export const gapPx = css`
   }
 `;
 
-export const flex1 = css`
-  .flex-1 {
-    flex: 1 1 0%;
-  }
-`;
-
 export const hoverBgGray700 = css`
   .hover-bg-gray-700:hover {
     background-color: var(--color-gray-700);
@@ -280,6 +288,30 @@ export const textGray900 = css`
   }
 `;
 
+export const textWhite = css`
+  .text-white {
+    color: white;
+  }
+`;
+
+export const textSm = css`
+  .text-sm {
+    font-size: 0.875rem;
+  }
+`;
+
+export const mb2 = css`
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+export const p2 = css`
+  .p-2 {
+    padding: 0.5rem;
+  }
+`;
+
 export const p6 = css`
   .p-6 {
     padding: 1.5rem;
@@ -292,9 +324,45 @@ export const border = css`
   }
 `;
 
+export const borderGray600 = css`
+  .border-gray-600 {
+    border-color: var(--color-gray-600);
+  }
+`;
+
 export const borderGray700 = css`
   .border-gray-700 {
     border-color: var(--color-gray-700);
+  }
+`;
+
+export const focusBorderBlue500 = css`
+  .focus-border-blue-500:focus {
+    border-color: var(--color-blue-500);
+  }
+`;
+
+export const focusRingBlue500 = css`
+  .focus-ring-blue-500:focus {
+    --pg-ring-color: rgb(59 130 246);
+    --pg-ring-inset: inset;
+    --pg-ring-offset-width: 0px;
+
+    box-shadow: var(--pg-ring-inset) 0 0 0
+      calc(3px + var(--pg-ring-offset-width)) var(--pg-ring-color);
+    outline: none;
+  }
+`;
+
+export const fontMedium = css`
+  .font-medium {
+    font-weight: 500;
+  }
+`;
+
+export const placeholderGray400 = css`
+  .placeholder-gray-400::placeholder {
+    color: var(--color-gray-400);
   }
 `;
 

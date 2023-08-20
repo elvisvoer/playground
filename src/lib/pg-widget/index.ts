@@ -1,12 +1,13 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { ref } from "lit/directives/ref.js";
-import { container, flex, flex1, gap4, wFull } from "./ui/css";
+import { container, flex, flex1, gap4 } from "./ui/css";
 
 import { VirtualConsole, HTMLConsoleDriver } from "./console";
 import { evalSafe } from "./javascript";
 
 import "./ui/card";
+import "./ui/textarea";
 
 type Context = {
   console: VirtualConsole;
@@ -15,37 +16,34 @@ type Context = {
 
 @customElement("pg-widget")
 export class PGWidget extends LitElement {
-  static styles = [container, flex, flex1, gap4, wFull];
+  static styles = [container, flex, flex1, gap4];
 
-  inputElement?: Element;
   virtualConsole?: VirtualConsole;
 
   render() {
     return html`
       <div class="flex container gap-4">
         <div class="flex-1">
-          <textarea
-            class="w-full"
-            ${ref(this.inputElementRefUpdated)}
-            @input="${(event: any) => {
-              this.virtualConsole?.clear();
-              try {
-                this.run(event.target?.value || "");
-              } catch (err: any) {
-                this.virtualConsole?.error(err.message);
-              }
-            }}"
-          ></textarea>
+          <pg-card>
+            <pg-textarea
+              label="JavaScript"
+              placeholder="console.log('Hello, world!');"
+              @input="${(event: any) => {
+                this.virtualConsole?.clear();
+                try {
+                  this.run(event.originalTarget?.value || "");
+                } catch (err: any) {
+                  this.virtualConsole?.error(err.message);
+                }
+              }}"
+            ></pg-textarea>
+          </pg-card>
         </div>
         <div class="flex-1">
           <pg-card><div ${ref(this.consoleRefUpdated)}></div></pg-card>
         </div>
       </div>
     `;
-  }
-
-  protected firstUpdated(): void {
-    this.run(String(this.inputElement?.textContent));
   }
 
   private run(code: string) {
@@ -57,14 +55,6 @@ export class PGWidget extends LitElement {
     context.window = context;
 
     evalSafe(code, context);
-  }
-
-  private inputElementRefUpdated(ref?: Element) {
-    if (!ref) {
-      return;
-    }
-
-    this.inputElement = ref;
   }
 
   private consoleRefUpdated(ref?: Element) {

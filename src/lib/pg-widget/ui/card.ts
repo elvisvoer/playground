@@ -10,7 +10,6 @@ import {
   p6,
   roundedLg,
   shadow,
-  wFull,
 } from "./css";
 
 @customElement("pg-card")
@@ -25,13 +24,12 @@ export class PGCard extends LitElement {
     p6,
     roundedLg,
     shadow,
-    wFull,
   ];
 
   protected render() {
     return html`
       <div
-        class="block w-full p-6 bg-gray-800 border border-gray-700 rounded-lg shadow hover-bg-gray-700"
+        class="block p-6 bg-gray-800 border border-gray-700 rounded-lg shadow hover-bg-gray-700"
       >
         <slot></slot>
       </div>
