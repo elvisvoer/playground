@@ -42,6 +42,12 @@ export const maxWSm = css`
   }
 `;
 
+export const hFull = css`
+  .h-full {
+    height: 100%;
+  }
+`;
+
 export const block = css`
   .block {
     display: block;
@@ -51,6 +57,18 @@ export const block = css`
 export const flex = css`
   .flex {
     display: flex;
+  }
+`;
+
+export const flexWrap = css`
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+`;
+
+export const flex48p = css`
+  .flex-48p {
+    flex: 45%;
   }
 `;
 
