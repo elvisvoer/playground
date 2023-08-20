@@ -6,7 +6,6 @@ import {
   block,
   border,
   borderGray700,
-  hoverBgGray700,
   p6,
   roundedLg,
   shadow,
@@ -20,7 +19,6 @@ export class PGCard extends LitElement {
     block,
     border,
     borderGray700,
-    hoverBgGray700,
     p6,
     roundedLg,
     shadow,
@@ -29,7 +27,7 @@ export class PGCard extends LitElement {
   protected render() {
     return html`
       <div
-        class="block p-6 bg-gray-800 border border-gray-700 rounded-lg shadow hover-bg-gray-700"
+        class="block p-6 bg-gray-800 border border-gray-700 rounded-lg shadow"
       >
         <slot></slot>
       </div>
